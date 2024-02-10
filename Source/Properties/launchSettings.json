@@ -1,0 +1,18 @@
+﻿{
+  "profiles": {
+    "ProceduralStructures": {
+      "commandName": "Executable",
+      "workingDirectory": "/home/me/Documents/flax-projects/test2",
+      "executablePath": "/home/me/Flax/FlaxEngine/Binaries/Editor/Linux/Development/FlaxEditor",
+      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test2\"",
+      "nativeDebugging": false
+    },
+    "ProceduralStructuresEditor": {
+      "commandName": "Executable",
+      "workingDirectory": "/home/me/Documents/flax-projects/test2",
+      "executablePath": "/home/me/Flax/FlaxEngine/Binaries/Editor/Linux/Development/FlaxEditor",
+      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test2\"",
+      "nativeDebugging": false
+    }
+  }
+}
