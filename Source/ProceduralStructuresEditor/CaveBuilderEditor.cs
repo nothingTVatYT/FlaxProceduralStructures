@@ -2,7 +2,7 @@ using FlaxEditor.CustomEditors;
 using FlaxEngine;
 using FlaxEditor.CustomEditors.Editors;
 
-namespace ProceduralStructures.Editor {
+namespace ProceduralStructures {
     [CustomEditor(typeof(CaveBuilderComponent))]
     public class CaveBuilderEditor : GenericEditor {
 

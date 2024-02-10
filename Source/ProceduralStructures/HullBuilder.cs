@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using FlaxEngine;
-using Game.ProceduralStructures;
-using ProceduralStructures;
+
+namespace ProceduralStructures;
 
 public class HullBuilder : Script {
 

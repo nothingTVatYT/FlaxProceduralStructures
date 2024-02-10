@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FlaxEngine;
 using Object = FlaxEngine.Object;
 
-namespace Game.ProceduralStructures;
+namespace ProceduralStructures;
 
 public class ProceduralStructureCache {
     private readonly Dictionary<string, Guid> _prefabs = new();

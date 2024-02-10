@@ -1,6 +1,6 @@
 ﻿using FlaxEngine;
 
-namespace Game.ProceduralStructures;
+namespace ProceduralStructures;
 
 /// <summary>
 /// HouseBuilder Script.
@@ -8,7 +8,9 @@ namespace Game.ProceduralStructures;
 public class HouseBuilder : Script
 {
     public JsonAsset houseDefinitionAsset;
-    private HouseDefinition houseDefinition => houseDefinitionAsset != null ? (HouseDefinition)houseDefinitionAsset.Instance : null;
+
+    private HouseDefinition houseDefinition =>
+        houseDefinitionAsset != null ? (HouseDefinition)houseDefinitionAsset.Instance : null;
 
     public string StreetName;
     public int Number;
@@ -27,15 +29,20 @@ public class HouseBuilder : Script
         DrawGizmo(true);
     }
 
-    private void DrawGizmo(bool selected) {
-        if (houseDefinition != null) {
+    private void DrawGizmo(bool selected)
+    {
+        if (houseDefinition != null)
+        {
             var size = CalculateSize();
             var halfSize = Vector3.Multiply(size, 0.5f);
             var bounds = new OrientedBoundingBox(halfSize, Transform.GetWorld());
             bounds.Transformation.Translation += new Vector3(0, halfSize.Y, 0);
-            if (selected) {
+            if (selected)
+            {
                 DebugDraw.DrawBox(bounds, new Color(1, 1, 1, 0.4f));
-            } else {
+            }
+            else
+            {
                 DebugDraw.DrawWireBox(bounds, Color.White);
             }
 
@@ -44,15 +51,19 @@ public class HouseBuilder : Script
 #if FLAX_EDITOR
             DebugDraw.DrawLines(new[] { start, end }, Transform.GetWorld(), Color.White);
 #endif
-        } else {
+        }
+        else
+        {
             var bounds = new OrientedBoundingBox(new Vector3(100, 100, 100), Transform.GetWorld());
             DebugDraw.DrawBox(bounds, Color.White);
         }
     }
-    
+
     public Vector3 CalculateSize()
     {
-        return houseDefinition != null ? new Vector3(houseDefinition.width, houseDefinition.TotalHeight, houseDefinition.length) : new Vector3(400, 200, 400);
+        return houseDefinition != null
+            ? new Vector3(houseDefinition.width, houseDefinition.TotalHeight, houseDefinition.length)
+            : new Vector3(400, 200, 400);
     }
 
     public Vector3 CalculateCenter()
@@ -60,4 +71,3 @@ public class HouseBuilder : Script
         return Actor.Position;
     }
 }
-

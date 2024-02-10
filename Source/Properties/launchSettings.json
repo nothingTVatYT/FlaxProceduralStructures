@@ -2,16 +2,16 @@
   "profiles": {
     "ProceduralStructures": {
       "commandName": "Executable",
-      "workingDirectory": "/home/me/Documents/flax-projects/test2",
+      "workingDirectory": "/home/me/Documents/flax-projects/test10",
       "executablePath": "/home/me/Flax/FlaxEngine/Binaries/Editor/Linux/Development/FlaxEditor",
-      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test2\"",
+      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test10\"",
       "nativeDebugging": false
     },
     "ProceduralStructuresEditor": {
       "commandName": "Executable",
-      "workingDirectory": "/home/me/Documents/flax-projects/test2",
+      "workingDirectory": "/home/me/Documents/flax-projects/test10",
       "executablePath": "/home/me/Flax/FlaxEngine/Binaries/Editor/Linux/Development/FlaxEditor",
-      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test2\"",
+      "commandLineArgs": "-project \"/home/me/Documents/flax-projects/test10\"",
       "nativeDebugging": false
     }
   }

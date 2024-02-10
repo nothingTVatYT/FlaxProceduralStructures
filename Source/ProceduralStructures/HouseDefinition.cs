@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FlaxEngine;
 
-namespace Game.ProceduralStructures;
+namespace ProceduralStructures;
 
 public class HouseDefinition
 {

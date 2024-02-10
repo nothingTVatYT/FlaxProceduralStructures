@@ -2,7 +2,7 @@ using FlaxEngine;
 using FlaxEditor.CustomEditors;
 using FlaxEditor.CustomEditors.Editors;
 
-namespace ProceduralStructures.Editor;
+namespace ProceduralStructures;
 
 [CustomEditor(typeof(HullBuilder))]
 public class HullBuilderEditor : GenericEditor

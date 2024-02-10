@@ -2,9 +2,8 @@
 using FlaxEditor.CustomEditors;
 using FlaxEngine;
 using FlaxEditor.CustomEditors.Editors;
-using Game.ProceduralStructures;
 
-namespace ProceduralStructures.Editor;
+namespace ProceduralStructures;
 
 [CustomEditor(typeof(HouseBuilder))]
 public class HouseBuilderEditor : GenericEditor {

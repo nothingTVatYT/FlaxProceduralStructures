@@ -4,7 +4,7 @@ using System.Text;
 using FlaxEngine;
 using FlaxEngine.Utilities;
 
-namespace Game;
+namespace ProceduralStructures;
 
 /// <summary>
 /// TextureGenerator Script.

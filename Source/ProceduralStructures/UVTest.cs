@@ -1,6 +1,6 @@
 ﻿using FlaxEngine;
 
-namespace Game.ProceduralStructures;
+namespace ProceduralStructures;
 
 public class UVTest : Script
 {

@@ -3,11 +3,12 @@ using System.Linq;
 using FlaxEngine;
 // ReSharper disable InconsistentNaming
 
-namespace Game.ProceduralStructures {
-    public static class Builder {
-        public static int CUTOUT = 1;
-        public enum MatchingVertex { XY, XZ, YZ, XYZ }
-        public static List<Face> IndentFace(Face face, Vector3 direction, float uvScale=1f) {
+namespace ProceduralStructures;
+
+public static class Builder {
+    public static int CUTOUT = 1;
+    public enum MatchingVertex { XY, XZ, YZ, XYZ }
+    public static List<Face> IndentFace(Face face, Vector3 direction, float uvScale=1f) {
             var faces = new List<Face>();
             var prev = Vector3.Zero;
             var firstVertex = true;
@@ -27,7 +28,7 @@ namespace Game.ProceduralStructures {
             return faces;
         }
 
-        public static Face[] SplitFaceABCD(Face face, float rAB, float rCD) {
+    public static Face[] SplitFaceABCD(Face face, float rAB, float rCD) {
             var mab = Vector3.Lerp(face.A, face.B, rAB);
             var mcd = Vector3.Lerp(face.C, face.D, rCD);
             var f1 = new Face(mab, face.B, face.C, mcd);
@@ -45,7 +46,7 @@ namespace Game.ProceduralStructures {
             return new Face[] { f1, f2 };
         }
 
-        public static Face[] SplitFaceBCDA(Face face, float rBC, float rDA) {
+    public static Face[] SplitFaceBCDA(Face face, float rBC, float rDA) {
             var mbc = Vector3.Lerp(face.B, face.C, rBC);
             var mda = Vector3.Lerp(face.D, face.A, rDA);
             var f1 = new Face(face.A, face.B, mbc, mda);
@@ -63,7 +64,7 @@ namespace Game.ProceduralStructures {
             return new Face[] { f1, f2 };
         }
 
-        public static Face[] SliceFace(Face face, float dx, float dy) {
+    public static Face[] SliceFace(Face face, float dx, float dy) {
             if (dx > 0) {
                 var e = new Vector3(face.B.X + dx, face.B.Y, face.B.Z);
                 var f = new Vector3(face.A.X + dx, face.A.Y, face.A.Z);
@@ -105,7 +106,7 @@ namespace Game.ProceduralStructures {
             }
         }
 
-        public static List<Vector3> MoveVertices(List<Vector3> list, Vector3 translation) {
+    public static List<Vector3> MoveVertices(List<Vector3> list, Vector3 translation) {
             var result = new List<Vector3>(list.Count);
             foreach (var v in list) {
                 result.Add(v + translation);
@@ -113,7 +114,7 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        public static List<Vector3> RotateVertices(List<Vector3> list, Quaternion rotation) {
+    public static List<Vector3> RotateVertices(List<Vector3> list, Quaternion rotation) {
             var result = new List<Vector3>(list.Count);
             foreach (var v in list) {
                 result.Add(v * rotation);
@@ -121,7 +122,7 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        public static List<Vector3> ScaleVertices(List<Vector3> list, Vector3 scale) {
+    public static List<Vector3> ScaleVertices(List<Vector3> list, Vector3 scale) {
             var result = new List<Vector3>(list.Count);
             foreach (var v in list) {
                 result.Add(Vector3.Multiply(v, scale));
@@ -129,13 +130,13 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        public static void SetUVCylinderProjection(List<Face> faces, Vector3 center, Vector3 direction, float uOffset, float uvScale) {
+    public static void SetUVCylinderProjection(List<Face> faces, Vector3 center, Vector3 direction, float uOffset, float uvScale) {
             foreach (var face in faces) {
                 face.SetUvCylinderProjection(center, direction, uOffset, uvScale);
             }
         }
 
-        public static List<Face> ExtrudeEdges(List<Vector3> vertices, Vector3 direction, float uvScale=1f) {
+    public static List<Face> ExtrudeEdges(List<Vector3> vertices, Vector3 direction, float uvScale=1f) {
             var faces = new List<Face>();
             var prev = Vector3.Zero;
             var firstVertex = true;
@@ -152,7 +153,7 @@ namespace Game.ProceduralStructures {
             return faces;
         }
 
-        public static List<Face> BridgeEdges(List<Edge> edgeList1, List<Edge> edgeList2, bool flipNormals, float uvScale) {
+    public static List<Face> BridgeEdges(List<Edge> edgeList1, List<Edge> edgeList2, bool flipNormals, float uvScale) {
             if (edgeList1.Count == 0 || edgeList1.Count != edgeList2.Count) {
                 Debug.LogWarning("Cannot bridge edges");
             }
@@ -166,7 +167,7 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        public static List<Face> BridgeEdgeLoopsPrepared(List<Vector3> fromVertices, List<Vector3> toVertices, float uvScale = 1f) {
+    public static List<Face> BridgeEdgeLoopsPrepared(List<Vector3> fromVertices, List<Vector3> toVertices, float uvScale = 1f) {
             var fromRing = new CircularReadonlyList<Vector3>(fromVertices);
             var toRing = new CircularReadonlyList<Vector3>(toVertices);
             var faces = new List<Face>();
@@ -180,7 +181,7 @@ namespace Game.ProceduralStructures {
             return faces;
         }
 
-        public static List<Face> BridgeEdgeLoops(List<Vector3> fromVertices, List<Vector3> toVertices, float uvScale=1f) {
+    public static List<Face> BridgeEdgeLoops(List<Vector3> fromVertices, List<Vector3> toVertices, float uvScale=1f) {
             var faces = new List<Face>();
             //TemporaryTesting();
             var numberOfVertices = fromVertices.Count;
@@ -232,11 +233,11 @@ namespace Game.ProceduralStructures {
             return faces;
         }
 
-        public static List<Face> ExtrudeEdges(Face face, Vector3 direction, float uvScale = 1f) {
+    public static List<Face> ExtrudeEdges(Face face, Vector3 direction, float uvScale = 1f) {
             return ExtrudeEdges(new List<Vector3> {face.A, face.B, face.C, face.D, face.A}, direction, uvScale);
         }
 
-        public static void ClampToPlane(List<Vector3> front, List<Vector3> back, Vector3 plane, Vector3 normal) {
+    public static void ClampToPlane(List<Vector3> front, List<Vector3> back, Vector3 plane, Vector3 normal) {
             for (var i = 0; i < front.Count; i++) {
                 // if vertex is behind the plane (not on normal side) project it on the plane
                 var dot = Vector3.Dot(front[i] - plane, normal);
@@ -262,7 +263,7 @@ namespace Game.ProceduralStructures {
             }
         }
 
-        public static List<Face> CloneAndMoveFacesOnNormal(List<Face> faces, float thickness, float uvScale) {
+    public static List<Face> CloneAndMoveFacesOnNormal(List<Face> faces, float thickness, float uvScale) {
             var result = new List<Face>();
             var closedLoop = faces[0].SharesEdgeWith(faces[^1]);
             //Debug.Log("is closed loop: " + closedLoop);
@@ -298,7 +299,7 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        public static void MoveVertices(List<Face> faces, Vector3 from, MatchingVertex matching, Vector3 to) {
+    public static void MoveVertices(List<Face> faces, Vector3 from, MatchingVertex matching, Vector3 to) {
             var delta = to - from;
             foreach (var face in faces) {
                 if (Matches(face.A, from, matching)) {
@@ -316,8 +317,8 @@ namespace Game.ProceduralStructures {
             }
         }
 
-        public static bool Matches(Vector3 v, Vector3 pattern, MatchingVertex matching)
-        {
+    public static bool Matches(Vector3 v, Vector3 pattern, MatchingVertex matching)
+    {
             var result = matching switch
             {
                 MatchingVertex.XZ => Mathf.Approximately(v.X, pattern.X) && Mathf.Approximately(v.Z, pattern.Z),
@@ -330,8 +331,8 @@ namespace Game.ProceduralStructures {
             return result;
         }
 
-        /* Other than in Unity 2D this rect defines positive y up */
-        public static Face ProjectRectOnFrontFace(Rectangle rect, float z) {
+    /* Other than in Unity 2D this rect defines positive y up */
+    public static Face ProjectRectOnFrontFace(Rectangle rect, float z) {
             var a = new Vector3(rect.X, rect.Y, z);
             var b = new Vector3(rect.X, rect.Y+rect.Height, z);
             var c = new Vector3(rect.X+rect.Width, rect.Y+rect.Height, z);
@@ -339,18 +340,18 @@ namespace Game.ProceduralStructures {
             return new Face(a, b, c, d);
         }
 
-        public static Face FindFirstFaceByTag(List<Face> faces, int tag)
-        {
+    public static Face FindFirstFaceByTag(List<Face> faces, int tag)
+    {
             return faces.FirstOrDefault(f => f.IsTagged(tag));
         }
 
-        public static float DistanceXZ(Vector3 a, Vector3 b) {
+    public static float DistanceXZ(Vector3 a, Vector3 b) {
             var dx = a.X - b.X;
             var dz = a.Z - b.Z;
             return Mathf.Sqrt(dx * dx + dz * dz);
         }
 
-        public static Vector3 FindCentroid(List<Vector3> list) {
+    public static Vector3 FindCentroid(List<Vector3> list) {
             float x = 0;
             float y = 0;
             float z = 0;
@@ -365,7 +366,7 @@ namespace Game.ProceduralStructures {
             return new Vector3(x, y, z);
         }
 
-        public static bool LineLineIntersect(Vector3 a, Vector3 b, Vector3 c, Vector3 d, out float m) {
+    public static bool LineLineIntersect(Vector3 a, Vector3 b, Vector3 c, Vector3 d, out float m) {
             m = 0;
             // direction from a to b
             var u = b-a;
@@ -405,5 +406,4 @@ namespace Game.ProceduralStructures {
             Debug.Log("don't match: " + h + " and " + i);
             return false;
         }
-    }
 }
